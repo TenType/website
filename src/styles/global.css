@@ -181,15 +181,6 @@ hr {
     border-top-color: rgb(var(--gray-dark));
 }
 
-@media (max-width: 720px) {
-    body {
-        font-size: 18px;
-    }
-    main {
-        padding: 1em;
-    }
-}
-
 .sr-only {
     border: 0;
     padding: 0;
