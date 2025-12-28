@@ -97,6 +97,28 @@ const posts = (await getCollection("blog")).sort(
           gap: 0.25rem;
         }
       }
+
+      ul li {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      ul li.visible {
+        animation: puzzleClick 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      }
+      @keyframes puzzleClick {
+        0% {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(-8px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
     </style>
   </head>
   <body>
@@ -109,7 +131,13 @@ const posts = (await getCollection("blog")).sort(
               <li>
                 <a href={`/blog/${post.id}/`}>
                   {post.data.heroImage && (
-                    <Image src={post.data.heroImage} alt="" class="thumbnail" />
+                    <Image
+                      src={post.data.heroImage}
+                      alt=""
+                      class="thumbnail"
+                      loading="lazy"
+                      decoding="async"
+                    />
                   )}
                   <div class="content">
                     <div class="header-row">
@@ -128,5 +156,42 @@ const posts = (await getCollection("blog")).sort(
       </section>
     </main>
     <Footer />
+    <script>
+      const init = () => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            const visibleEntries = entries
+              .filter((entry) => entry.isIntersecting)
+              .sort(
+                (a, b) => a.boundingClientRect.top - b.boundingClientRect.top,
+              );
+
+            const delayPerItem = Math.min(
+              100,
+              300 / Math.max(visibleEntries.length, 1),
+            );
+
+            visibleEntries.forEach((entry, index) => {
+              const item = entry.target as HTMLElement;
+              item.style.animationDelay = `${index * delayPerItem}ms`;
+              item.classList.add("visible");
+              observer.unobserve(entry.target);
+            });
+          },
+          { rootMargin: "50px", threshold: 0.1 },
+        );
+
+        document
+          .querySelectorAll("ul li")
+          .forEach((item) => observer.observe(item));
+      };
+
+      // Run when idle or after 100ms max
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(init, { timeout: 100 });
+      } else {
+        setTimeout(init, 0);
+      }
+    </script>
   </body>
 </html>
