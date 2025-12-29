@@ -77,7 +77,7 @@ body {
     overflow-wrap: break-word;
     color: var(--text-color);
     font-size: 16px;
-    line-height: 1.7;
+    line-height: 1.6;
     transition: color 0.3s ease;
     overflow-y: scroll;
 }
@@ -194,4 +194,9 @@ hr {
     clip-path: inset(50%);
     /* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
     white-space: nowrap;
+}
+
+ul,
+ol {
+    padding-inline-start: 20px;
 }
