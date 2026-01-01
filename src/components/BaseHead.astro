@@ -29,6 +29,7 @@ const { title, description, image = FallbackImage } = Astro.props;
   href={new URL("rss.xml", Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
+<meta name="format-detection" content="telephone=no" />
 
 <!-- Dark mode script (prevents FOUC) -->
 <script is:inline>
