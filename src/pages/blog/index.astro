@@ -6,6 +6,7 @@ import Footer from "../../components/Footer.astro";
 import FormattedDate from "../../components/FormattedDate.astro";
 import Header from "../../components/Header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+import "../../styles/blog-post.css";
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -28,73 +29,9 @@ const posts = (await getCollection("blog")).sort(
       ul li {
         width: 100%;
       }
-      ul li * {
-        text-decoration: none;
-        transition: 0.3s ease;
-      }
-      ul li a {
-        display: flex;
-        gap: 1.5rem;
-        align-items: flex-start;
-      }
-      ul li a:hover h4,
-      ul li a:hover .date {
-        color: rgb(var(--accent));
-      }
-      ul li a:hover img {
-        box-shadow: var(--box-shadow);
-      }
-      .thumbnail {
-        flex-shrink: 0;
-        width: 200px;
-        height: 120px;
-        object-fit: cover;
-        border-radius: 12px;
-      }
-      .content {
-        flex: 1;
-        min-width: 0;
-      }
-      .header-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        gap: 1rem;
-        margin-bottom: 0.5rem;
-      }
-      .title {
-        margin: 0;
-        line-height: 1.3;
-        font-size: 1.25rem;
-      }
-      .date {
-        margin: 0;
-        color: rgb(var(--gray));
-        white-space: nowrap;
-        flex-shrink: 0;
-      }
-      .description {
-        margin: 0;
-        line-height: 1.5;
-        overflow: hidden;
-        color: var(--text-color);
-      }
       @media (max-width: 720px) {
         ul {
           gap: 1.5rem;
-        }
-        ul li a {
-          flex-direction: column;
-          gap: 1rem;
-        }
-        .thumbnail {
-          width: 100%;
-          height: 180px;
-        }
-        .header-row {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 0.25rem;
         }
       }
 
@@ -128,11 +65,11 @@ const posts = (await getCollection("blog")).sort(
         <ul>
           {
             posts.map((post) => (
-              <li>
+              <li class="blog-post">
                 <a href={`/blog/${post.id}/`}>
-                  {post.data.heroImage && (
+                  {post.data.thumbnail && (
                     <Image
-                      src={post.data.heroImage}
+                      src={post.data.thumbnail}
                       alt=""
                       class="thumbnail"
                       loading="lazy"
