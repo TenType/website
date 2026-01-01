@@ -19,8 +19,11 @@ const latestPost = posts[0];
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <style>
+      .latest-post {
+        margin-bottom: 1.25rem;
+      }
       .latest-post h2 {
-        margin-bottom: 1rem;
+        margin-bottom: 1.25rem;
       }
     </style>
   </head>
@@ -30,7 +33,8 @@ const latestPost = posts[0];
       <h1>Hi! I'm Max.</h1>
       <p>
         I'm a student developer and researcher from the Bay Area studying at <a
-          href="https://www.cmu.edu/">Carnegie Mellon University</a
+          href="https://www.cmu.edu/"
+          target="_blank">Carnegie Mellon University</a
         >. I have interests in statistics, computer science, and psychology,
         especially in machine learning and its applications. My work centers on
         machine learning in cybersecurity, with a secondary focus on pedagogy.
@@ -64,6 +68,19 @@ const latestPost = posts[0];
           </section>
         )
       }
+      <h2>Contact</h2>
+      <p>
+        For professional inquiries, feel free to connect with me on <a
+          href="https://www.linkedin.com/in/max-wen/"
+          target="_blank">LinkedIn</a
+        >. My resume and email address are available by request.
+      </p>
+      <p>
+        My accounts on other platforms are typically under the username <strong
+          >tentype</strong
+        > or <strong>tentypedev</strong>. Please note that these accounts are
+        generally reserved for established contacts.
+      </p>
     </main>
     <Footer />
   </body>
