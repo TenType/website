@@ -2,4 +2,5 @@
 // You can import this data from anywhere in your site by using the `import` keyword.
 
 export const SITE_TITLE = "Max Wen";
-export const SITE_DESCRIPTION = "Welcome to Max's website!";
+export const SITE_DESCRIPTION =
+    "Hi! I'm Max, a student developer and researcher studying at Carnegie Mellon University in Pittsburgh, Pennsylvania.";
